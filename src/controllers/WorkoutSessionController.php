@@ -25,6 +25,18 @@ final class WorkoutSessionController
 
         return $list;
     }
+
+    public function getSessionsListByType(string $type)
+    {
+        $sessions = $this->repository->getAllSesssionsByType($type);
+
+        $list = [];
+        foreach($sessions as $session) {
+            array_push($list, $this->printSession($session));
+        }
+
+        return $list;
+    }
     
     private function printSession(WorkoutSession $session)
     {

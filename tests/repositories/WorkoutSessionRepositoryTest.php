@@ -6,7 +6,8 @@ use FitnessApp\Repositories\WorkoutSessionRepository;
 
 final class WorkoutSessionRepositoryTest extends TestCase
 {
-    private static $mockDatabase = [];
+    private static $mockDatabase;
+    private static $repository;
 
     public static function setUpBeforeClass(): void
     {
@@ -19,14 +20,27 @@ final class WorkoutSessionRepositoryTest extends TestCase
             new WorkoutSession(6, 'walking'),
             new WorkoutSession(7, 'running')
         ];
+
+        self::$repository = new WorkoutSessionRepository(self::$mockDatabase);
     }
 
     public function testGetsAllSessions()
     {
-        $repository = new WorkoutSessionRepository(self::$mockDatabase);
-        $sessions = $repository->getAllSesssions();
+        $sessions = self::$repository->getAllSesssions();
 
         $expected = self::$mockDatabase;
         $this->assertEquals($expected, $sessions);
+    }
+
+    public function testGetsAllSessionsByType()
+    {
+        $sessions = self::$repository->getAllSesssionsByType("running");
+
+        $expected = [
+            new WorkoutSession(1, 'running'),
+            new WorkoutSession(2, 'running'),
+            new WorkoutSession(7, 'running')
+        ];
+        $this->assertEqualsCanonicalizing($expected, $sessions);
     }
 }

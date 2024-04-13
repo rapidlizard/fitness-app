@@ -7,24 +7,37 @@ use PHPUnit\Framework\TestCase;
 
 final class WorkoutSessionControllerTest extends TestCase
 {
-    private static WorkoutSessionRepository $mockRepository;
+    private static WorkoutSessionController $controller;
 
     public static function setUpBeforeClass(): void
     {
         $mockDatabase = [
             new WorkoutSession(1, "running"),
             new WorkoutSession(2, "running"),
+            new WorkoutSession(3, "cycling"),
         ];
 
-        self::$mockRepository = new WorkoutSessionRepository($mockDatabase);
+        $mockRepository = new WorkoutSessionRepository($mockDatabase);
+        self::$controller = new WorkoutSessionController($mockRepository);
     }
 
-    public function testReturnsSessionsList()
+    public function testGetsSessionsList()
     {
-        $controller = new WorkoutSessionController(self::$mockRepository);
+        $list = self::$controller->getSessionsList();
+
+        $expectedList = [
+            "|id: 1 |type: running |" . PHP_EOL, 
+            "|id: 2 |type: running |" . PHP_EOL,
+            "|id: 3 |type: cycling |" . PHP_EOL,
+        ];
+        $this->assertEquals($expectedList, $list);
+    }
+
+    public function testGetsSessionsListByType()
+    {
+        $filteredList = self::$controller->getSessionsListByType("running");
 
         $expectedList = ["|id: 1 |type: running |" . PHP_EOL, "|id: 2 |type: running |" . PHP_EOL];
-
-        $this->assertEquals($expectedList, $controller->getSessionsList());
+        $this->assertEquals($expectedList, $filteredList);
     }
 }

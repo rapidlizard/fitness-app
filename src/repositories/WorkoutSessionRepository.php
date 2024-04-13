@@ -15,4 +15,11 @@ final class WorkoutSessionRepository
     {
         return $this->database;
     }
+
+    public function getAllSesssionsByType(string $type)
+    {
+        return array_filter($this->database, function ($session) use($type){
+            return $session->getType() === $type;
+        });
+    }
 }

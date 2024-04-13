@@ -44,7 +44,7 @@ I'm using https://phptherightway.com for reference on best practices.
 
 ## TODO: 
 Taken from the PDF
-- [ ] ```GetAllWorkoutSessions()```. Retrieve and display all ```WorkoutSession``` recorded by users (at the moment there are no users so we are imagining all sessions belong to a single user). 
+- [x] ```GetAllWorkoutSessions()```. Retrieve and display all ```WorkoutSession``` recorded by users (at the moment there are no users so we are imagining all sessions belong to a single user). 
 
 - [ ] ```GetAllWorkoutSessionsOfType($type)```. Retrieve and filter all ```WorkoutSession``` by type.
 
