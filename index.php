@@ -2,9 +2,11 @@
 define('__ROOT__', dirname(__FILE__));
 require_once(__ROOT__."\src\models\WorkoutSession.php");
 require_once(__ROOT__."\src\\repositories\WorkoutSessionRepository.php");
+require_once(__ROOT__."\src\\controllers\WorkoutSessionController.php");
 
-use FitnessApp\Repositories\WorkoutSessionRepository;
 use FitnessApp\Models\WorkoutSession;
+use FitnessApp\Controllers\WorkoutSessionController;
+use FitnessApp\Repositories\WorkoutSessionRepository;
 
 $database = [
     new WorkoutSession(1, "running"),
@@ -17,13 +19,11 @@ $database = [
 ];
 
 $workoutSessionRepository = new WorkoutSessionRepository($database);
-$sessions = $workoutSessionRepository->getAllSesssions();
+$workoutSessionController = new WorkoutSessionController($workoutSessionRepository);
 
-function printSession(WorkoutSession $session)
-{
-    return "|id: {$session->getId()} |type: {$session->getType()} |" . PHP_EOL;
+$sessionList = $workoutSessionController->getSessionsList();
+
+foreach ($sessionList as $session) {
+    echo $session;
 }
 
-foreach ($sessions as $session) {
-    echo printSession($session);
-}
