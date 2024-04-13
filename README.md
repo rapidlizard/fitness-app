@@ -29,7 +29,7 @@ src
 |   └── WorkoutSessionRepository.php
 ├── controllers
 |   └── WorkoutSessionController.php
-└── index.php
+index.php
 ```
 
 ## Tech stack:
@@ -38,9 +38,9 @@ src
 - PHPUnit
 - Leaf
 
-Choosing Leaf incase I can expose those methods via a REST API. Super lightweight and performant. Given the simplicity of this task this works for me perfectly as it requires minimal code and setup.
+Choosing Leaf incase I have time to make it into a REST API. It's lightweight and performant. Given the simplicity of this project, I think this works for me perfectly as it requires minimal code and setup.
 
-I'm using https://phptherightway.com for reference on best practices
+I'm using https://phptherightway.com for reference on best practices.
 
 ## TODO: 
 Taken from the PDF
@@ -65,7 +65,7 @@ To run all tests:
 
 To run the application:
 ```
-> php ./src/index.php
+> php index.php
 ```
 
 

@@ -2,7 +2,7 @@
     "name": "franc/fitness-app",
     "autoload": {
         "psr-4": {
-            "Playground\\": "src/"
+            "FitnessApp\\": "src/"
         }
     },
     "require-dev": {
