@@ -107,8 +107,21 @@ Taken from the PDF
 - [ ] REST API
 
 
-<!-- ## Notes: 
+<!-- 
+
+## Notes: 
 - [x] DB in index, injected into repo then repo injected into controller 
 - [x] I want to inject the ```WorkoutSessionRepository``` into the controller so the controller will depend on a ```Repository``` interface.
 - [x] The repository depends on an Array for a database. Reads and writes to this array.
-- [ ] Implement Leaf to expose methods via REST API -->
+- [ ] Implement Leaf to expose methods via REST API 
+
+new CLIRoute("-get-sessions", function ($parameters) use ($workoutSessionController) {
+    //logic
+})
+
+
+
+
+
+
+-->

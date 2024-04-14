@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
+use FitnessApp\Cli\CliRoute;
 use FitnessApp\Models\WorkoutSession;
 use FitnessApp\Controllers\WorkoutSessionController;
 use FitnessApp\Repositories\InMemoryWorkoutSessionRepository;
@@ -18,33 +19,43 @@ $database = [
 $workoutSessionRepository = new InMemoryWorkoutSessionRepository($database);
 $workoutSessionController = new WorkoutSessionController($workoutSessionRepository);
 
-function runCLI($controller, $arguments)
-{
-    echo $arguments[1] . PHP_EOL;
-    if ($arguments[1] === "get-sessions") {
-        if (isset($arguments[2])) {
-            $sessionList = $controller->getSessionsListByType($arguments[2]);
-            printSessionsList($sessionList);
-            return;
-        } else {
-            $sessionList = $controller->getSessionsList();
-            printSessionsList($sessionList);
-            return;
-        }
-    } else if ($arguments[1] === "get-total-distance") {
-        echo $controller->getTotalDistanceOfSessionType($arguments[2]);
-        return;
-    } else if ($arguments[1] === "get-total-time") {
-        echo $controller->getTotalElapsedTimeOfSessionsType($arguments[2]);
-        return;
-    } else {
-        echo "Usage:" . PHP_EOL .
-            "php index.php get-sessions <type>" . PHP_EOL .
-            "php index.php get-total-distance <type>" . PHP_EOL .
-            "php index.php get-total-time <type>";
+new CliRoute("get-sessions", $argv, function ($type) use($workoutSessionController) {
+    echo "exec get-sessions".PHP_EOL;
+    if ($type) {
+        $sessionList = $workoutSessionController->getSessionsListByType($type);
+        printSessionsList($sessionList);
         return;
     }
-}
+    $sessionList = $workoutSessionController->getSessionsList();
+    printSessionsList($sessionList);
+    return;
+});
+
+new CliRoute("get-total-distance", $argv, function ($type) use($workoutSessionController) {
+    echo "exec get-total-distance".PHP_EOL;
+    if (!$type) {
+        throw new Exception("No type of workout was provided");
+        return;
+    }
+    echo $workoutSessionController->getTotalDistanceOfSessionType($type);
+    return;
+});
+
+new CliRoute("get-total-time", $argv, function ($type) use($workoutSessionController) {
+    echo "exec get-total-time".PHP_EOL;
+    if (!$type) {
+        throw new Exception("No type of workout was provided");
+        return;
+    }
+    echo $workoutSessionController->getTotalDistanceOfSessionType($type);
+    return;
+});
+
+echo "Usage:" . PHP_EOL .
+        "php index.php get-sessions <type>" . PHP_EOL .
+        "php index.php get-total-distance <type>" . PHP_EOL .
+        "php index.php get-total-time <type>";
+
 
 function printSessionsList($sessionList)
 {
@@ -52,5 +63,3 @@ function printSessionsList($sessionList)
         echo $session;
     }
 }
-
-runCLI($workoutSessionController, $argv);
