@@ -2,6 +2,7 @@
 
 namespace FitnessApp\Controllers;
 
+use Exception;
 use FitnessApp\Models\WorkoutSession;
 use FitnessApp\Repositories\WorkoutSessionRepository;
 
@@ -29,6 +30,10 @@ final class WorkoutSessionController
     public function getSessionsListByType(string $type)
     {
         $sessions = $this->repository->getAllSesssionsByType($type);
+
+        if (count($sessions) === 0) {
+            throw new Exception("ERROR: Sessions of type {$type} not found");
+        }
 
         $list = [];
         foreach($sessions as $session) {

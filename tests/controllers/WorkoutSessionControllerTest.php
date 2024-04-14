@@ -40,4 +40,13 @@ final class WorkoutSessionControllerTest extends TestCase
         $expectedList = ["|id: 1 |type: running |" . PHP_EOL, "|id: 2 |type: running |" . PHP_EOL];
         $this->assertEquals($expectedList, $filteredList);
     }
+
+    public function testThrowsExceptionWhenTypeCannotBeFound()
+    {
+        $incorrectType = "foo";
+
+        $this->expectExceptionMessage("ERROR: Sessions of type {$incorrectType} not found");
+
+        self::$controller->getSessionsListByType($incorrectType);
+    }
 }

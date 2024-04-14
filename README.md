@@ -46,7 +46,7 @@ I'm using https://phptherightway.com for reference on best practices.
 Taken from the PDF
 - [x] ```GetAllWorkoutSessions()```. Retrieve and display all ```WorkoutSession``` recorded by users (at the moment there are no users so we are imagining all sessions belong to a single user). 
 
-- [ ] ```GetAllWorkoutSessionsOfType($type)```. Retrieve and filter all ```WorkoutSession``` by type.
+- [x] ```GetAllWorkoutSessionsOfType($type)```. Retrieve and filter all ```WorkoutSession``` by type.
 
 - [ ] ```GetTotalDistanceForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```distance```
 

@@ -18,7 +18,6 @@ $database = [
     new WorkoutSession(7, "running")
 ];
 
-
 $workoutSessionRepository = new WorkoutSessionRepository($database);
 $workoutSessionController = new WorkoutSessionController($workoutSessionRepository);
 
@@ -31,7 +30,8 @@ function runCLI($controller, $arguments)
             return;
         } else {
             $sessionList = $controller->getSessionsList();
-            printSessions($sessionList);
+            printSessions($sessionList); 
+            return;
         }
     } else {
         echo 'Usage: php index.php sessions';
