@@ -32,7 +32,7 @@ final class WorkoutSessionController
         $sessions = $this->repository->getAllSesssionsByType($type);
 
         if (count($sessions) === 0) {
-            throw new Exception("ERROR: Sessions of type {$type} not found");
+            throw new Exception("Sessions of type {$type} not found");
         }
 
         $list = [];

@@ -45,7 +45,7 @@ final class WorkoutSessionControllerTest extends TestCase
     {
         $incorrectType = "foo";
 
-        $this->expectExceptionMessage("ERROR: Sessions of type {$incorrectType} not found");
+        $this->expectExceptionMessage("Sessions of type {$incorrectType} not found");
 
         self::$controller->getSessionsListByType($incorrectType);
     }
