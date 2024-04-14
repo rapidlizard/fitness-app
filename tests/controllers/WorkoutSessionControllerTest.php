@@ -3,7 +3,6 @@
 use FitnessApp\Controllers\WorkoutSessionController;
 use FitnessApp\Models\WorkoutSession;
 use FitnessApp\Repositories\InMemoryWorkoutSessionRepository;
-use FitnessApp\Repositories\WorkoutSessionRepository;
 use PHPUnit\Framework\TestCase;
 
 final class WorkoutSessionControllerTest extends TestCase
@@ -14,7 +13,7 @@ final class WorkoutSessionControllerTest extends TestCase
     {
         $mockDatabase = [
             new WorkoutSession(1, "running", 2.2, new DateInterval("PT30M")),
-            new WorkoutSession(2, "running", 1.3, new DateInterval("PT10M")),
+            new WorkoutSession(2, "running", 1.3, new DateInterval("PT35M")),
             new WorkoutSession(3, "cycling", 5, new DateInterval("PT20M")),
         ];
 
@@ -28,7 +27,7 @@ final class WorkoutSessionControllerTest extends TestCase
 
         $expectedList = [
             "|id: 1 |type: running |distance: 2.2 |duration: 30m |" . PHP_EOL, 
-            "|id: 2 |type: running |distance: 1.3 |duration: 10m |" . PHP_EOL,
+            "|id: 2 |type: running |distance: 1.3 |duration: 35m |" . PHP_EOL,
             "|id: 3 |type: cycling |distance: 5 |duration: 20m |" . PHP_EOL,
         ];
         $this->assertEquals($expectedList, $list);
@@ -38,7 +37,7 @@ final class WorkoutSessionControllerTest extends TestCase
     {
         $filteredList = self::$controller->getSessionsListByType("running");
 
-        $expectedList = ["|id: 1 |type: running |distance: 2.2 |duration: 30m |" . PHP_EOL, "|id: 2 |type: running |distance: 1.3 |duration: 10m |" . PHP_EOL];
+        $expectedList = ["|id: 1 |type: running |distance: 2.2 |duration: 30m |" . PHP_EOL, "|id: 2 |type: running |distance: 1.3 |duration: 35m |" . PHP_EOL];
         $this->assertEquals($expectedList, $filteredList);
     }
 
@@ -56,7 +55,7 @@ final class WorkoutSessionControllerTest extends TestCase
         $type = "running";
         $totalTime = self::$controller->getTotalElapsedTimeOfSessionsType($type);
 
-        $expectedTime = "Total running time: 40m";
+        $expectedTime = "Total running time: 1h 5m";
         $this->assertEquals($expectedTime, $totalTime);
     }
 }

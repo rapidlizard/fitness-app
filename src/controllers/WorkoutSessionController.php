@@ -62,11 +62,24 @@ final class WorkoutSessionController
             $totalTime->add($session->getElapsedTime());
         }
 
-        return "Total {$type} time: {$totalTime->diff($referenceTime)->i}m";
+        return "Total {$type} time: {$this->formatElapsedTime($totalTime->diff($referenceTime))}";
     }
     
     private function createSessionEntry(WorkoutSession $session)
     {
         return "|id: {$session->getId()} |type: {$session->getType()} |distance: {$session->getDistance()} |duration: {$session->getElapsedTime()->i}m |" . PHP_EOL;
+    }
+
+    private function formatElapsedTime(DateInterval $interval) {
+        $format = '';
+        
+        if ($interval->h > 0) {
+            $format .= '%hh ';
+        }
+        if ($interval->i > 0) {
+            $format .= '%im';
+        }
+        
+        return $interval->format($format);
     }
 }
