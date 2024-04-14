@@ -48,7 +48,7 @@ Taken from the PDF
 
 - [x] ```GetAllWorkoutSessionsOfType($type)```. Retrieve and filter all ```WorkoutSession``` by type.
 
-- [ ] ```GetTotalDistanceForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```distance```
+- [x] ```GetTotalDistanceForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```distance```
 
 - [ ] ```GetTotalElapsedTimeForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```elapsedTime```
 
