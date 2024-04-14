@@ -39,8 +39,9 @@ function runCLI($controller, $arguments)
         return;
     } else {
         echo "Usage:" . PHP_EOL .
-            "php index.php get-sessions <WorkoutType>" . PHP_EOL .
-            "php index.php get-total-distance <WorkoutType>";
+            "php index.php get-sessions <type>" . PHP_EOL .
+            "php index.php get-total-distance <type>" . PHP_EOL .
+            "php index.php get-total-time <type>";
         return;
     }
 }

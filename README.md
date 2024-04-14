@@ -52,7 +52,7 @@ Taken from the PDF
 
 - [x] ```GetTotalDistanceForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```distance```
 
-- [ ] ```GetTotalElapsedTimeForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```elapsedTime```
+- [x] ```GetTotalElapsedTimeForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```elapsedTime```
 
 ## Setup
 To install dependencies run:
@@ -70,6 +70,30 @@ To run the application:
 > php index.php
 ```
 
+## CLI
+
+To get all Workout Sessions:
+```
+> php index.php get-sessions
+```
+
+To get all Workout Sessions filtered by type:
+```
+> php index.php get-sessions <type> eg. running
+```
+
+To get total distance covered for a type of workout:
+```
+> php index.php get-total-distance <type> eg. running
+```
+
+To get total time for a type of workout:
+```
+> php index.php get-total-time <type> eg. running
+```
+At the moment it only displays the total minutes, so if the total time is 1h30m it will only display 30m :/ TODO!
+
+Current type of sessions available are: ```cycling```, ```walking``` and ```running```
 
 <!-- ## Notes: 
 - [x] DB in index, injected into repo then repo injected into controller 
