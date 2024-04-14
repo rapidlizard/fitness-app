@@ -11,7 +11,7 @@ abstract class WorkoutSessionRepository
         $this->database = $database;
     }
 
-    abstract public function getAllWorkoutSesssions();
+    abstract public function getAllWorkoutSessions();
 
-    abstract public function getWorkoutSesssionsOfType(string $type);
+    abstract public function getWorkoutSessionsOfType(string $type);
 }

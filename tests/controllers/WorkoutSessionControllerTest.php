@@ -50,4 +50,13 @@ final class WorkoutSessionControllerTest extends TestCase
         $expectedDistance = "Total running distance: 3.5km";
         $this->assertEquals($expectedDistance, $totalDistance);
     }
+
+    public function testGetsTotalElapsedTimeForSessionsOfType()
+    {
+        $type = "running";
+        $totalTime = self::$controller->getTotalElapsedTimeOfSessionsType($type);
+
+        $expectedTime = "Total running time: 40m";
+        $this->assertEquals($expectedTime, $totalTime);
+    }
 }

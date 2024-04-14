@@ -26,7 +26,7 @@ final class InMemoryWorkoutSessionRepositoryTest extends TestCase
 
     public function testGetsAllSessions()
     {
-        $sessions = self::$repository->getAllWorkoutSesssions();
+        $sessions = self::$repository->getAllWorkoutSessions();
 
         $expected = self::$mockDatabase;
         $this->assertEquals($expected, $sessions);
@@ -34,7 +34,7 @@ final class InMemoryWorkoutSessionRepositoryTest extends TestCase
 
     public function testGetsAllSessionsByType()
     {
-        $sessions = self::$repository->getWorkoutSesssionsOfType("running");
+        $sessions = self::$repository->getWorkoutSessionsOfType("running");
 
         $expected = [
             new WorkoutSession(1, "running", 5.5, new DateInterval("PT35M")),
@@ -50,6 +50,6 @@ final class InMemoryWorkoutSessionRepositoryTest extends TestCase
 
         $this->expectExceptionMessage("Sessions of type {$incorrectType} not found");
 
-        self::$repository->getWorkoutSesssionsOfType($incorrectType);
+        self::$repository->getWorkoutSessionsOfType($incorrectType);
     }
 }

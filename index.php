@@ -33,6 +33,10 @@ function runCLI($controller, $arguments)
         }
     } else if ($arguments[1] === "get-total-distance") {
         echo $controller->getTotalDistanceOfSessionType($arguments[2]);
+        return;
+    } else if ($arguments[1] === "get-total-time") {
+        echo $controller->getTotalElapsedTimeOfSessionsType($arguments[2]);
+        return;
     } else {
         echo "Usage:" . PHP_EOL .
             "php index.php get-sessions <WorkoutType>" . PHP_EOL .
