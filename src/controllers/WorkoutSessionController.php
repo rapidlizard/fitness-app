@@ -48,7 +48,7 @@ final class WorkoutSessionController
             $totalDistance += $session->getDistance();
         }
 
-        return $totalDistance;
+        return "Total {$type} distance: {$totalDistance}km";
     }
     
     private function createSessionEntry(WorkoutSession $session)

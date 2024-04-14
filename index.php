@@ -23,23 +23,28 @@ $workoutSessionController = new WorkoutSessionController($workoutSessionReposito
 
 function runCLI($controller, $arguments)
 {
-    if ($arguments[1] === 'sessions') {
+    echo $arguments[1] . PHP_EOL;
+    if ($arguments[1] === "get-sessions") {
         if (isset($arguments[2])) {
             $sessionList = $controller->getSessionsListByType($arguments[2]);
-            printSessions($sessionList);
+            printSessionsList($sessionList);
             return;
         } else {
             $sessionList = $controller->getSessionsList();
-            printSessions($sessionList); 
+            printSessionsList($sessionList); 
             return;
         }
+    } else if ($arguments[1] === "get-total-distance") {
+        echo $controller->getTotalDistanceOfSessionType($arguments[2]);
     } else {
-        echo 'Usage: php index.php sessions';
+        echo "Usage:".PHP_EOL.
+        "php index.php get-sessions <WorkoutType>".PHP_EOL.
+        "php index.php get-total-distance <WorkoutType>";
         return;
     }
 }
 
-function printSessions($sessionList)
+function printSessionsList($sessionList)
 {
     foreach ($sessionList as $session) {
         echo $session;

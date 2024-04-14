@@ -43,9 +43,10 @@ final class WorkoutSessionControllerTest extends TestCase
 
     public function testGetsTotalDistanceForSessionsOfType()
     {
-        $totalDistance = self::$controller->getTotalDistanceOfSessionType("running");
+        $type = "running";
+        $totalDistance = self::$controller->getTotalDistanceOfSessionType($type);
 
-        $expectedDistance = 3.5;
+        $expectedDistance = "Total running distance: 3.5km";
         $this->assertEquals($expectedDistance, $totalDistance);
     }
 }
