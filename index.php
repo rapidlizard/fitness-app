@@ -1,8 +1,8 @@
 <?php
 define('__ROOT__', dirname(__FILE__));
-require_once(__ROOT__."\src\models\WorkoutSession.php");
-require_once(__ROOT__."\src\\repositories\WorkoutSessionRepository.php");
-require_once(__ROOT__."\src\\controllers\WorkoutSessionController.php");
+require_once(__ROOT__ . "\src\models\WorkoutSession.php");
+require_once(__ROOT__ . "\src\\repositories\WorkoutSessionRepository.php");
+require_once(__ROOT__ . "\src\\controllers\WorkoutSessionController.php");
 
 use FitnessApp\Models\WorkoutSession;
 use FitnessApp\Controllers\WorkoutSessionController;
@@ -22,16 +22,28 @@ $database = [
 $workoutSessionRepository = new WorkoutSessionRepository($database);
 $workoutSessionController = new WorkoutSessionController($workoutSessionRepository);
 
-
-if ($argv[1] === 'sessions') {
-    $sessionList = $workoutSessionController->getSessionsList();
-    foreach ($sessionList as $session) {
-        echo $session;
-    }    
-} else {
-    echo 'Usage: php index.php sessions';
+function runCLI($controller, $arguments)
+{
+    if ($arguments[1] === 'sessions') {
+        if (isset($arguments[2])) {
+            $sessionList = $controller->getSessionsListByType($arguments[2]);
+            printSessions($sessionList);
+            return;
+        } else {
+            $sessionList = $controller->getSessionsList();
+            printSessions($sessionList);
+        }
+    } else {
+        echo 'Usage: php index.php sessions';
+        return;
+    }
 }
 
+function printSessions($sessionList)
+{
+    foreach ($sessionList as $session) {
+        echo $session;
+    }
+}
 
-
-
+runCLI($workoutSessionController, $argv);

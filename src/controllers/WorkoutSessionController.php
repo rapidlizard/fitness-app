@@ -20,7 +20,7 @@ final class WorkoutSessionController
 
         $list = [];
         foreach($sessions as $session) {
-            array_push($list, $this->printSession($session));
+            array_push($list, $this->createSessionEntry($session));
         }
 
         return $list;
@@ -32,13 +32,13 @@ final class WorkoutSessionController
 
         $list = [];
         foreach($sessions as $session) {
-            array_push($list, $this->printSession($session));
+            array_push($list, $this->createSessionEntry($session));
         }
 
         return $list;
     }
     
-    private function printSession(WorkoutSession $session)
+    private function createSessionEntry(WorkoutSession $session)
     {
         return "|id: {$session->getId()} |type: {$session->getType()} |" . PHP_EOL;
     }
