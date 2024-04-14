@@ -2,9 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 use FitnessApp\Models\WorkoutSession;
-use FitnessApp\Repositories\WorkoutSessionRepository;
+use FitnessApp\Repositories\InMemoryWorkoutSessionRepository;
 
-final class WorkoutSessionRepositoryTest extends TestCase
+final class InMemoryWorkoutSessionRepositoryTest extends TestCase
 {
     private static $mockDatabase;
     private static $repository;
@@ -21,12 +21,12 @@ final class WorkoutSessionRepositoryTest extends TestCase
             new WorkoutSession(7, "running", 4.1)
         ];
 
-        self::$repository = new WorkoutSessionRepository(self::$mockDatabase);
+        self::$repository = new InMemoryWorkoutSessionRepository(self::$mockDatabase);
     }
 
     public function testGetsAllSessions()
     {
-        $sessions = self::$repository->getAllSesssions();
+        $sessions = self::$repository->getAllWorkoutSesssions();
 
         $expected = self::$mockDatabase;
         $this->assertEquals($expected, $sessions);
@@ -34,12 +34,12 @@ final class WorkoutSessionRepositoryTest extends TestCase
 
     public function testGetsAllSessionsByType()
     {
-        $sessions = self::$repository->getAllSesssionsByType("running");
+        $sessions = self::$repository->getWorkoutSesssionsOfType("running");
 
         $expected = [
-            new WorkoutSession(1, 'running', 5.5),
-            new WorkoutSession(2, 'running', 4.2),
-            new WorkoutSession(7, 'running', 4.1)
+            new WorkoutSession(1, "running", 5.5),
+            new WorkoutSession(2, "running", 4.2),
+            new WorkoutSession(7, "running", 4.1)
         ];
         $this->assertEqualsCanonicalizing($expected, $sessions);
     }
@@ -50,6 +50,6 @@ final class WorkoutSessionRepositoryTest extends TestCase
 
         $this->expectExceptionMessage("Sessions of type {$incorrectType} not found");
 
-        self::$repository->getAllSesssionsByType($incorrectType);
+        self::$repository->getWorkoutSesssionsOfType($incorrectType);
     }
 }

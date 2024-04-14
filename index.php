@@ -1,12 +1,13 @@
 <?php
-define('__ROOT__', dirname(__FILE__));
-require_once(__ROOT__ . "\src\models\WorkoutSession.php");
-require_once(__ROOT__ . "\src\\repositories\WorkoutSessionRepository.php");
+define("__ROOT__", dirname(__FILE__));
+require_once(__ROOT__ . "\src\\models\WorkoutSession.php");
+require_once(__ROOT__ . "\src\\repositories\InMemoryWorkoutSessionRepository.php");
 require_once(__ROOT__ . "\src\\controllers\WorkoutSessionController.php");
+
 
 use FitnessApp\Models\WorkoutSession;
 use FitnessApp\Controllers\WorkoutSessionController;
-use FitnessApp\Repositories\WorkoutSessionRepository;
+use FitnessApp\Repositories\InMemoryWorkoutSessionRepository;
 
 $database = [
     new WorkoutSession(1, "running", 5.5),
@@ -18,7 +19,7 @@ $database = [
     new WorkoutSession(7, "running", 4.1)
 ];
 
-$workoutSessionRepository = new WorkoutSessionRepository($database);
+$workoutSessionRepository = new InMemoryWorkoutSessionRepository($database);
 $workoutSessionController = new WorkoutSessionController($workoutSessionRepository);
 
 function runCLI($controller, $arguments)

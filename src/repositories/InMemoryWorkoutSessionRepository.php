@@ -2,23 +2,19 @@
 
 namespace FitnessApp\Repositories;
 
+require_once(__ROOT__ . "\src\\abstracts\WorkoutSessionRepository.php");
+
 use Exception;
+use FitnessApp\Abstracts\WorkoutSessionRepository;
 
-final class WorkoutSessionRepository
+final class InMemoryWorkoutSessionRepository extends WorkoutSessionRepository
 {
-    private $database;
-
-    public function __construct($database)
-    {
-        $this->database = $database;
-    }
-
-    public function getAllSesssions()
+    public function getAllWorkoutSesssions()
     {
         return $this->database;
     }
 
-    public function getAllSesssionsByType(string $type)
+    public function getWorkoutSesssionsOfType(string $type)
     {
         $sessions = array_filter($this->database, function ($session) use($type){
             return $session->getType() === $type;

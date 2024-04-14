@@ -2,6 +2,7 @@
 
 use FitnessApp\Controllers\WorkoutSessionController;
 use FitnessApp\Models\WorkoutSession;
+use FitnessApp\Repositories\InMemoryWorkoutSessionRepository;
 use FitnessApp\Repositories\WorkoutSessionRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +18,7 @@ final class WorkoutSessionControllerTest extends TestCase
             new WorkoutSession(3, "cycling", 5),
         ];
 
-        $mockRepository = new WorkoutSessionRepository($mockDatabase);
+        $mockRepository = new InMemoryWorkoutSessionRepository($mockDatabase);
         self::$controller = new WorkoutSessionController($mockRepository);
     }
 

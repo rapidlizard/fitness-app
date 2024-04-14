@@ -2,9 +2,8 @@
 
 namespace FitnessApp\Controllers;
 
-use Exception;
 use FitnessApp\Models\WorkoutSession;
-use FitnessApp\Repositories\WorkoutSessionRepository;
+use FitnessApp\Abstracts\WorkoutSessionRepository;
 
 final class WorkoutSessionController
 {
@@ -17,7 +16,7 @@ final class WorkoutSessionController
 
     public function getSessionsList()
     {
-        $sessions = $this->repository->getAllSesssions();
+        $sessions = $this->repository->getAllWorkoutSesssions();
 
         $list = [];
         foreach($sessions as $session) {
@@ -29,7 +28,7 @@ final class WorkoutSessionController
 
     public function getSessionsListByType(string $type)
     {
-        $sessions = $this->repository->getAllSesssionsByType($type);
+        $sessions = $this->repository->getWorkoutSesssionsOfType($type);
 
         $list = [];
         foreach($sessions as $session) {
@@ -41,7 +40,7 @@ final class WorkoutSessionController
 
     public function getTotalDistanceOfSessionType(string $type)
     {
-        $sessions = $this->repository->getAllSesssionsByType($type);
+        $sessions = $this->repository->getWorkoutSesssionsOfType($type);
 
         $totalDistance = 0;
         foreach($sessions as $session) {

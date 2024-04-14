@@ -8,7 +8,7 @@ final class WorkoutSessionTest extends TestCase
     public function testReturnsId()
     {
         $id = 1;
-        $type = 'running';
+        $type = "running";
         $distance = 20.5;
         $session = new WorkoutSession($id, $type, $distance);
 
@@ -18,7 +18,7 @@ final class WorkoutSessionTest extends TestCase
     public function testReturnsType()
     {
         $id = 1;
-        $type = 'running';
+        $type = "running";
         $distance = 20.5;
         $session = new WorkoutSession($id, $type, $distance);
 
@@ -28,7 +28,7 @@ final class WorkoutSessionTest extends TestCase
     public function testReturnsDistance()
     {
         $id = 1;
-        $type = 'running';
+        $type = "running";
         $distance = 20.5;
         $session = new WorkoutSession($id, $type, $distance);
 
