@@ -5,33 +5,36 @@ use PHPUnit\Framework\TestCase;
 
 final class WorkoutSessionTest extends TestCase
 {
-    public function testReturnsId()
+
+    private static WorkoutSession $session;
+
+    public static function setUpBeforeClass(): void
     {
         $id = 1;
         $type = "running";
         $distance = 20.5;
-        $session = new WorkoutSession($id, $type, $distance);
+        $elapsedTime = new DateInterval("P30M");
 
-        $this->assertEquals($id, $session->getId());
+        self::$session = new WorkoutSession($id, $type, $distance, $elapsedTime);
+    }
+
+    public function testReturnsId()
+    {
+        $this->assertEquals(1, self::$session->getId());
     }
 
     public function testReturnsType()
     {
-        $id = 1;
-        $type = "running";
-        $distance = 20.5;
-        $session = new WorkoutSession($id, $type, $distance);
-
-        $this->assertEquals($type, $session->getType());
+        $this->assertEquals("running", self::$session->getType());
     }
 
     public function testReturnsDistance()
     {
-        $id = 1;
-        $type = "running";
-        $distance = 20.5;
-        $session = new WorkoutSession($id, $type, $distance);
+        $this->assertEquals(20.5, self::$session->getDistance());
+    }
 
-        $this->assertEquals($distance, $session->getDistance());
+    public function testReturnsElapsedTime()
+    {
+        $this->assertEquals(new DateInterval("P30M"), self::$session->getElapsedTime());
     }
 }

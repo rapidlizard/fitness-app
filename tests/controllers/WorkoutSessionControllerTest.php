@@ -13,9 +13,9 @@ final class WorkoutSessionControllerTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         $mockDatabase = [
-            new WorkoutSession(1, "running", 2.2),
-            new WorkoutSession(2, "running", 1.3),
-            new WorkoutSession(3, "cycling", 5),
+            new WorkoutSession(1, "running", 2.2, new DateInterval("P30M")),
+            new WorkoutSession(2, "running", 1.3, new DateInterval("P10M")),
+            new WorkoutSession(3, "cycling", 5, new DateInterval("P20M")),
         ];
 
         $mockRepository = new InMemoryWorkoutSessionRepository($mockDatabase);

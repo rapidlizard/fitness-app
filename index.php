@@ -1,22 +1,18 @@
 <?php
-define("__ROOT__", dirname(__FILE__));
-require_once(__ROOT__ . "\src\\models\WorkoutSession.php");
-require_once(__ROOT__ . "\src\\repositories\InMemoryWorkoutSessionRepository.php");
-require_once(__ROOT__ . "\src\\controllers\WorkoutSessionController.php");
-
+require __DIR__ . '/vendor/autoload.php';
 
 use FitnessApp\Models\WorkoutSession;
 use FitnessApp\Controllers\WorkoutSessionController;
 use FitnessApp\Repositories\InMemoryWorkoutSessionRepository;
 
 $database = [
-    new WorkoutSession(1, "running", 5.5),
-    new WorkoutSession(2, "running", 4.2),
-    new WorkoutSession(3, "cycling", 23.1),
-    new WorkoutSession(4, "walking", 3.6),
-    new WorkoutSession(5, "cycling", 40),
-    new WorkoutSession(6, "walking", 5.1),
-    new WorkoutSession(7, "running", 4.1)
+    new WorkoutSession(1, "running", 5.5, new DateInterval("PT35M")),
+    new WorkoutSession(2, "running", 4.2, new DateInterval("PT27M")),
+    new WorkoutSession(3, "cycling", 23.1, new DateInterval("PT38M")),
+    new WorkoutSession(4, "walking", 3.6, new DateInterval("PT55M")),
+    new WorkoutSession(5, "cycling", 40, new DateInterval("PT1H5M")),
+    new WorkoutSession(6, "walking", 5.1, new DateInterval("PT45M")),
+    new WorkoutSession(7, "running", 4.1, new DateInterval("PT30M"))
 ];
 
 $workoutSessionRepository = new InMemoryWorkoutSessionRepository($database);
@@ -32,15 +28,15 @@ function runCLI($controller, $arguments)
             return;
         } else {
             $sessionList = $controller->getSessionsList();
-            printSessionsList($sessionList); 
+            printSessionsList($sessionList);
             return;
         }
     } else if ($arguments[1] === "get-total-distance") {
         echo $controller->getTotalDistanceOfSessionType($arguments[2]);
     } else {
-        echo "Usage:".PHP_EOL.
-        "php index.php get-sessions <WorkoutType>".PHP_EOL.
-        "php index.php get-total-distance <WorkoutType>";
+        echo "Usage:" . PHP_EOL .
+            "php index.php get-sessions <WorkoutType>" . PHP_EOL .
+            "php index.php get-total-distance <WorkoutType>";
         return;
     }
 }

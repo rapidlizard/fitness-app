@@ -2,8 +2,6 @@
 
 namespace FitnessApp\Repositories;
 
-require_once(__ROOT__ . "\src\\abstracts\WorkoutSessionRepository.php");
-
 use Exception;
 use FitnessApp\Abstracts\WorkoutSessionRepository;
 
