@@ -43,4 +43,13 @@ final class WorkoutSessionRepositoryTest extends TestCase
         ];
         $this->assertEqualsCanonicalizing($expected, $sessions);
     }
+
+    public function testThrowsExceptionWhenTypeCannotBeFound()
+    {
+        $incorrectType = "foo";
+
+        $this->expectExceptionMessage("Sessions of type {$incorrectType} not found");
+
+        self::$repository->getAllSesssionsByType($incorrectType);
+    }
 }

@@ -41,15 +41,6 @@ final class WorkoutSessionControllerTest extends TestCase
         $this->assertEquals($expectedList, $filteredList);
     }
 
-    public function testThrowsExceptionWhenTypeCannotBeFound()
-    {
-        $incorrectType = "foo";
-
-        $this->expectExceptionMessage("Sessions of type {$incorrectType} not found");
-
-        self::$controller->getSessionsListByType($incorrectType);
-    }
-
     public function testGetsTotalDistanceForSessionsOfType()
     {
         $totalDistance = self::$controller->getTotalDistanceOfSessionType("running");

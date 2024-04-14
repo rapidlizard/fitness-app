@@ -2,6 +2,8 @@
 
 namespace FitnessApp\Repositories;
 
+use Exception;
+
 final class WorkoutSessionRepository
 {
     private $database;
@@ -18,8 +20,14 @@ final class WorkoutSessionRepository
 
     public function getAllSesssionsByType(string $type)
     {
-        return array_filter($this->database, function ($session) use($type){
+        $sessions = array_filter($this->database, function ($session) use($type){
             return $session->getType() === $type;
         });
+
+        if (count($sessions) === 0) {
+            throw new Exception("Sessions of type {$type} not found");
+        }
+
+        return $sessions;
     }
 }

@@ -31,10 +31,6 @@ final class WorkoutSessionController
     {
         $sessions = $this->repository->getAllSesssionsByType($type);
 
-        if (count($sessions) === 0) {
-            throw new Exception("Sessions of type {$type} not found");
-        }
-
         $list = [];
         foreach($sessions as $session) {
             array_push($list, $this->createSessionEntry($session));
@@ -46,10 +42,6 @@ final class WorkoutSessionController
     public function getTotalDistanceOfSessionType(string $type)
     {
         $sessions = $this->repository->getAllSesssionsByType($type);
-
-        if (count($sessions) === 0) {
-            throw new Exception("Sessions of type {$type} not found");
-        }
 
         $totalDistance = 0;
         foreach($sessions as $session) {
