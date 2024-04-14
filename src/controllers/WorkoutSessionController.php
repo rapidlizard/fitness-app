@@ -42,9 +42,25 @@ final class WorkoutSessionController
 
         return $list;
     }
+
+    public function getTotalDistanceOfSessionType(string $type)
+    {
+        $sessions = $this->repository->getAllSesssionsByType($type);
+
+        if (count($sessions) === 0) {
+            throw new Exception("Sessions of type {$type} not found");
+        }
+
+        $totalDistance = 0;
+        foreach($sessions as $session) {
+            $totalDistance += $session->getDistance();
+        }
+
+        return $totalDistance;
+    }
     
     private function createSessionEntry(WorkoutSession $session)
     {
-        return "|id: {$session->getId()} |type: {$session->getType()} |" . PHP_EOL;
+        return "|id: {$session->getId()} |type: {$session->getType()} |distance: {$session->getDistance()} |" . PHP_EOL;
     }
 }

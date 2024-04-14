@@ -12,13 +12,13 @@ final class WorkoutSessionRepositoryTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$mockDatabase = [
-            new WorkoutSession(1, 'running'),
-            new WorkoutSession(2, 'running'),
-            new WorkoutSession(3, 'cycling'),
-            new WorkoutSession(4, 'walking'),
-            new WorkoutSession(5, 'cycling'),
-            new WorkoutSession(6, 'walking'),
-            new WorkoutSession(7, 'running')
+            new WorkoutSession(1, "running", 5.5),
+            new WorkoutSession(2, "running", 4.2),
+            new WorkoutSession(3, "cycling", 23.1),
+            new WorkoutSession(4, "walking", 3.6),
+            new WorkoutSession(5, "cycling", 40),
+            new WorkoutSession(6, "walking", 5.1),
+            new WorkoutSession(7, "running", 4.1)
         ];
 
         self::$repository = new WorkoutSessionRepository(self::$mockDatabase);
@@ -37,9 +37,9 @@ final class WorkoutSessionRepositoryTest extends TestCase
         $sessions = self::$repository->getAllSesssionsByType("running");
 
         $expected = [
-            new WorkoutSession(1, 'running'),
-            new WorkoutSession(2, 'running'),
-            new WorkoutSession(7, 'running')
+            new WorkoutSession(1, 'running', 5.5),
+            new WorkoutSession(2, 'running', 4.2),
+            new WorkoutSession(7, 'running', 4.1)
         ];
         $this->assertEqualsCanonicalizing($expected, $sessions);
     }

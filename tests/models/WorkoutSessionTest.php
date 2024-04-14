@@ -9,7 +9,8 @@ final class WorkoutSessionTest extends TestCase
     {
         $id = 1;
         $type = 'running';
-        $session = new WorkoutSession($id, $type);
+        $distance = 20.5;
+        $session = new WorkoutSession($id, $type, $distance);
 
         $this->assertEquals($id, $session->getId());
     }
@@ -18,8 +19,19 @@ final class WorkoutSessionTest extends TestCase
     {
         $id = 1;
         $type = 'running';
-        $session = new WorkoutSession($id, $type);
+        $distance = 20.5;
+        $session = new WorkoutSession($id, $type, $distance);
 
         $this->assertEquals($type, $session->getType());
+    }
+
+    public function testReturnsDistance()
+    {
+        $id = 1;
+        $type = 'running';
+        $distance = 20.5;
+        $session = new WorkoutSession($id, $type, $distance);
+
+        $this->assertEquals($distance, $session->getDistance());
     }
 }
