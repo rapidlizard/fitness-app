@@ -37,9 +37,9 @@ final class InMemoryWorkoutSessionRepositoryTest extends TestCase
         $sessions = self::$repository->getWorkoutSesssionsOfType("running");
 
         $expected = [
-            new WorkoutSession(1, "running", 5.5, new DateInterval("P35M")),
-            new WorkoutSession(2, "running", 4.2, new DateInterval("P27M")),
-            new WorkoutSession(7, "running", 4.1, new DateInterval("P30M"))
+            new WorkoutSession(1, "running", 5.5, new DateInterval("PT35M")),
+            new WorkoutSession(2, "running", 4.2, new DateInterval("PT27M")),
+            new WorkoutSession(7, "running", 4.1, new DateInterval("PT30M"))
         ];
         $this->assertEqualsCanonicalizing($expected, $sessions);
     }

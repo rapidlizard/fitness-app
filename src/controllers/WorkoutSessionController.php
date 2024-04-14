@@ -52,6 +52,6 @@ final class WorkoutSessionController
     
     private function createSessionEntry(WorkoutSession $session)
     {
-        return "|id: {$session->getId()} |type: {$session->getType()} |distance: {$session->getDistance()} |" . PHP_EOL;
+        return "|id: {$session->getId()} |type: {$session->getType()} |distance: {$session->getDistance()} |duration: {$session->getElapsedTime()->i}m |" . PHP_EOL;
     }
 }

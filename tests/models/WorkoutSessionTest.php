@@ -13,7 +13,7 @@ final class WorkoutSessionTest extends TestCase
         $id = 1;
         $type = "running";
         $distance = 20.5;
-        $elapsedTime = new DateInterval("P30M");
+        $elapsedTime = new DateInterval("PT30M");
 
         self::$session = new WorkoutSession($id, $type, $distance, $elapsedTime);
     }
@@ -35,6 +35,6 @@ final class WorkoutSessionTest extends TestCase
 
     public function testReturnsElapsedTime()
     {
-        $this->assertEquals(new DateInterval("P30M"), self::$session->getElapsedTime());
+        $this->assertEquals(new DateInterval("PT30M"), self::$session->getElapsedTime());
     }
 }

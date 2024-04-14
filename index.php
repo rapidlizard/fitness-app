@@ -10,7 +10,7 @@ $database = [
     new WorkoutSession(2, "running", 4.2, new DateInterval("PT27M")),
     new WorkoutSession(3, "cycling", 23.1, new DateInterval("PT38M")),
     new WorkoutSession(4, "walking", 3.6, new DateInterval("PT55M")),
-    new WorkoutSession(5, "cycling", 40, new DateInterval("PT1H5M")),
+    new WorkoutSession(5, "cycling", 40, new DateInterval("PT15M")),
     new WorkoutSession(6, "walking", 5.1, new DateInterval("PT45M")),
     new WorkoutSession(7, "running", 4.1, new DateInterval("PT30M"))
 ];
