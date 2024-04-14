@@ -88,7 +88,6 @@ To get total time for a type of workout:
 ```
 > php index.php get-total-time <type> eg. running
 ```
-At the moment it only displays the total minutes, so if the total time is 1h30m it will only display 30m :/ TODO!
 
 Current type of sessions available are: ```cycling```, ```walking``` and ```running```
 
@@ -103,7 +102,7 @@ Taken from the PDF
 
 - [x] ```GetTotalElapsedTimeForWorkoutSessionsOfType($type)```: Retrieve and filter all ```WorkoutSession``` by type and sum all the ```elapsedTime```
 
-- [ ] Fix total elapsed time only showing the minutes
+- [x] Fix total elapsed time only showing the minutes
 
 - [ ] REST API
 
