@@ -7,7 +7,7 @@ class WorkoutSession
 {
     id: int 
     type: WorkoutType
-    elapsedTime: DateTime
+    elapsedTime: DateInterval
     date: DateTime
     distance: int
 }
