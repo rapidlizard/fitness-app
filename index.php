@@ -18,12 +18,20 @@ $database = [
     new WorkoutSession(7, "running")
 ];
 
+
 $workoutSessionRepository = new WorkoutSessionRepository($database);
 $workoutSessionController = new WorkoutSessionController($workoutSessionRepository);
 
-$sessionList = $workoutSessionController->getSessionsList();
 
-foreach ($sessionList as $session) {
-    echo $session;
+if ($argv[1] === 'sessions') {
+    $sessionList = $workoutSessionController->getSessionsList();
+    foreach ($sessionList as $session) {
+        echo $session;
+    }    
+} else {
+    echo 'Usage: php index.php sessions';
 }
+
+
+
 
